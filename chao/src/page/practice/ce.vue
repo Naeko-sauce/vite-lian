@@ -29,10 +29,18 @@ document.body.appendChild(renderer.domElement)//将渲染器挂载到body上
 const geometry = new THREE.BoxGeometry(1, 1, 1)
 //创建材质
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+const ParentCbeMateraial = new THREE.MeshBasicMaterial({ color: 0x0bfff })
+//创建父元素
+const parentCbe = new THREE.Mesh(geometry, ParentCbeMateraial)
 //创建网格，就是物体
 const cube = new THREE.Mesh(geometry, material)
-//将网格添加到场景中
-scene.add(cube)
+//将子元素添加到父元素中
+parentCbe.add(cube)
+//设置网格位置
+cube.position.set(3, 0, 0)
+parentCbe.position.set(-3, 0, 0)
+//将网格添加到场景中,更改为添加父元素
+scene.add(parentCbe)
 //设置相机位置
 camera.position.z = 5
 camera.position.x = 2
